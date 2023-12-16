@@ -27,7 +27,7 @@ public class Ciudadano {
 	@Column(name = "ciud_cedula")
 	private String cedula;
 
-	@Column(name = "ciud_cedula")
+	@Column(name = "ciud_direccion")
 	private String direccion;
 
 	//set and get
