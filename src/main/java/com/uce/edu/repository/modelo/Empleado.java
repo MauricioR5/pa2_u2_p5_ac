@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -21,17 +23,15 @@ public class Empleado {
 	@Column(name = "empl_id")
 	private Integer id;
 
-	@Column(name = "empl_sueldo")
-	private BigDecimal sueldo;
-
-	@Column(name = "empl_cargo")
-	private String cargo;
+	@Column(name = "empl_salario")
+	private BigDecimal salario;
 	
-	@Column(name = "empl_fecha_contrato")
-	private LocalDateTime fechaContrato;
+	@Column(name = "empl_fecha_ingreso")
+	private LocalDateTime fechaIngreso;
 	
-	@Column(name = "empl_permisos")
-	private String permisos;
+	@OneToOne
+	@JoinColumn(name = "empl_ciudadano_id")
+	private Ciudadano ciudadano;
 
 	//set and get
 	
@@ -43,37 +43,33 @@ public class Empleado {
 		this.id = id;
 	}
 
-	public BigDecimal getSueldo() {
-		return sueldo;
+	public BigDecimal getSalario() {
+		return salario;
 	}
 
-	public void setSueldo(BigDecimal sueldo) {
-		this.sueldo = sueldo;
+	public void setSalario(BigDecimal salario) {
+		this.salario = salario;
 	}
 
-	public String getCargo() {
-		return cargo;
+	public LocalDateTime getFechaIngreso() {
+		return fechaIngreso;
 	}
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setFechaIngreso(LocalDateTime fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
 	}
 
-	public LocalDateTime getFechaContrato() {
-		return fechaContrato;
+	public Ciudadano getCiudadano() {
+		return ciudadano;
 	}
 
-	public void setFechaContrato(LocalDateTime fechaContrato) {
-		this.fechaContrato = fechaContrato;
+	public void setCiudadano(Ciudadano ciudadano) {
+		this.ciudadano = ciudadano;
 	}
+	
 
-	public String getPermisos() {
-		return permisos;
-	}
+	
 
-	public void setPermisos(String permisos) {
-		this.permisos = permisos;
-	}
 	
 	
 }

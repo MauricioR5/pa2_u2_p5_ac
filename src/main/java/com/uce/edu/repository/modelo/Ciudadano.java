@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -24,11 +25,8 @@ public class Ciudadano {
 	@Column(name = "ciud_apellido")
 	private String apellido;
 
-	@Column(name = "ciud_cedula")
-	private String cedula;
-
-	@Column(name = "ciud_direccion")
-	private String direccion;
+	@OneToOne(mappedBy = "ciudadano")
+	private Empleado empleado;
 
 	//set and get
 	
@@ -56,21 +54,14 @@ public class Ciudadano {
 		this.apellido = apellido;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
 	
 	
 }
