@@ -20,4 +20,20 @@ public class HotelRepositoryImpl implements IHotelRepository {
 		this.entityManager.persist(hotel);
 	}
 
+	@Override
+	public Hotel seleccionar(Integer id) {
+		return this.entityManager.find(Hotel.class, id);
+	}
+
+	@Override
+	public void actualizar(Hotel hotel) {
+		this.entityManager.merge(hotel);
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		Hotel hote = new Hotel();
+		this.entityManager.remove(hote);
+	}
+
 }

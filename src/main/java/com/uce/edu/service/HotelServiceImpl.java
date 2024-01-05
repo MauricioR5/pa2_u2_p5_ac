@@ -11,10 +11,29 @@ public class HotelServiceImpl implements IHotelService {
 
 	@Autowired
 	private IHotelRepository iHotelRepository;
+
 	@Override
-	
+
 	public void guardar(Hotel hotel) {
 		this.iHotelRepository.insertar(hotel);
+	}
+
+	@Override
+	public Hotel buscar(Integer id) {
+
+		return this.iHotelRepository.seleccionar(id);
+	}
+
+	@Override
+	public void actualizar(Hotel hotel) {
+		
+		this.iHotelRepository.actualizar(hotel);
+	}
+
+	@Override
+	public void borrar(Integer id) {
+
+		this.iHotelRepository.eliminar(id);
 	}
 
 }
