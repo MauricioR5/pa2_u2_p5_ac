@@ -54,6 +54,14 @@ public class Pa2U2P5AcApplication implements CommandLineRunner {
 	
 	this.iLibroService.agregar(lib);
 	
+	this.iLibroService.buscar(1);
+	
+	lib.setFechaPublicacion(LocalDateTime.of(2023, 12, 12, 12, 02));
+	this.iLibroService.actualizar(lib);
+	
+	this.iLibroService.borrar(1);
+	
+	
 	}
 
 }

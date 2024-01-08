@@ -11,10 +11,27 @@ public class LibroServiceImpl implements ILibroService {
 
 	@Autowired
 	private ILibroRepository iLibroRepository;
+
 	@Override
 	public void agregar(Libro libro) {
 
 		this.iLibroRepository.insertar(libro);
+	}
+
+	@Override
+	public Libro buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.seleccionar(id);
+	}
+
+	@Override
+	public void actualizar(Libro libro) {
+		this.iLibroRepository.actualizar(libro);
+	}
+
+	@Override
+	public void borrar(Integer id) {
+		this.iLibroRepository.eliminar(id);
 	}
 
 }
