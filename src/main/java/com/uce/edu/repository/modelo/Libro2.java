@@ -67,6 +67,11 @@ public class Libro2 {
 		this.autoresLibros = autoresLibros;
 	}
 
+	@Override
+	public String toString() {
+		return "Libro2 [id=" + id + ", titulo=" + titulo + ", fechaPublicacion=" + fechaPublicacion + "]";
+	}
+
 	
 
 	

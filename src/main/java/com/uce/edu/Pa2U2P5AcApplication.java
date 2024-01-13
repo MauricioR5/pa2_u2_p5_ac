@@ -29,44 +29,32 @@ public class Pa2U2P5AcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		Libro2 lib = new Libro2();
-		lib.setTitulo("Cien anios de soledad 2");
-		lib.setFechaPublicacion(LocalDateTime.now());
-
-		Autor2 autor = new Autor2();
-		autor.setNombre("Augusto Salazar 2");
-		autor.setNacionalidad("Venezolano 2");
-
-		Autor2 autor2 = new Autor2();
-		autor2.setNombre("Jhon Jairo 2");
-		autor2.setNacionalidad("Ecuatoriano 2");
-
-		Set<Autor2> autores = new HashSet<Autor2>();
-		autores.add(autor);
-		autores.add(autor2);
-
-		// Primer registro
-		AutorLibro autorLibro1 = new AutorLibro();
-		autorLibro1.setLibro2(lib);
-		autorLibro1.setAutor2(autor);
-		autorLibro1.setFecha(LocalDateTime.now());
-		// segundo registro
-		AutorLibro autorLibro2 = new AutorLibro();
-		autorLibro2.setLibro2(lib);
-		autorLibro2.setAutor2(autor2);
-		autorLibro2.setFecha(LocalDateTime.now());
-
-		List<AutorLibro> lista = new ArrayList<>();
-		lista.add(autorLibro1);
-		lista.add(autorLibro2);
-
-		lib.setAutoresLibros(lista);
-
-		//this.iLibroService.agregar(lib);
+		System.out.println("Query");
+				
+		List<Libro>lista = this.iLibroService.buscarPorFecha(LocalDateTime.of(2022,1,1,5,20));
+		for(Libro libro : lista) {
+		System.out.println(libro);
+		}
 		
-		Libro libroFinal = this.iLibroService.buscarPorTitulo("Cien anios de soledad");
-		System.out.println(libroFinal);
+		
+		System.out.println("TypedQuery");
+		Libro lib1 = this.iLibroService.buscarPorNombre("JAVA");
+		System.out.println(lib1);
+		
+		List<Libro> lista2 = this.iLibroService.buscarPorFecha2(LocalDateTime.of(2022,1,1,1,20));
+		for(Libro libro : lista2) {
+			System.out.println(libro);
+			}
+		
+		System.out.println("NamedQuery");
+		
+		Libro lib2 = this.iLibroService.buscarPorTituloNamed("PYTHON");
+		System.out.println(lib2);
+		
+		List<Libro> lista3 = this.iLibroService.buscarPorFechaNamed(LocalDateTime.of(2022,1,1,1,20));
+		for(Libro libro : lista3) {
+			System.out.println(libro);
+	}
 	}
 
 }

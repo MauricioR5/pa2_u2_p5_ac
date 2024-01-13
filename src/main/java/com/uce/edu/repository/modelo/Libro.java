@@ -13,11 +13,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "libro")
+
+@NamedQuery(name = "Libro.queryBuscarPorTitulo",query = "SELECT l FROM Libro l WHERE l.titulo = : titulo")
+@NamedQuery(name = "Libro.queryBuscarPorFecha", query = "SELECT l FROM Libro l WHERE l.fechaPublicacion > :fecha")
 public class Libro {
 	
 	@SequenceGenerator(name = "seq_libro", sequenceName = "seq_libro", allocationSize = 1)
