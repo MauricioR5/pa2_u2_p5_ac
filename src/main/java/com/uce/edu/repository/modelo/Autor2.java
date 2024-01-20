@@ -1,6 +1,5 @@
 package com.uce.edu.repository.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;

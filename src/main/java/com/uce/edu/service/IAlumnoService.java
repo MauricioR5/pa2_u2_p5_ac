@@ -11,4 +11,16 @@ public interface IAlumnoService {
 	public void actualizar(Alumno alumno);
 
 	public void eliminar(Integer id);
+	
+	public Alumno buscarPorNombre(String nombre);
+
+	public Alumno buscarPorCedula(String cedula);
+
+	public Alumno buscarPorApellido(String apellido);
+
+	public Alumno buscarPorNombreNative(String nombre);
+
+	public Alumno buscarPorCedulaNative(String cedula);
+
+	public Alumno buscarPorApellidoNative(String apellido);
 }

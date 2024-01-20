@@ -16,7 +16,7 @@ public interface ILibroRepository {
 	
 	public List<Libro> seleccionarPorFechaPublicacion(LocalDateTime fechaPublicacion);
 	
-	public Libro seleccionarPorNombre(String nombre);
+	public Libro seleccionarPorNombreNative(String nombre);
 
 	public List<Libro> seleccionarPorFecha(LocalDateTime fechaPublicacion);
 	

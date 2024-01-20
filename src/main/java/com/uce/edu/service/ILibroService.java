@@ -16,7 +16,7 @@ public interface ILibroService {
 	
 	public List<Libro> buscarPorFecha(LocalDateTime fecha);
 	
-	public Libro buscarPorNombre(String nombre);
+	public Libro buscarPorNombreNative(String nombre);
 	
 	public List<Libro> buscarPorFecha2(LocalDateTime fecha);
 	

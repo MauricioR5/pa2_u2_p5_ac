@@ -51,10 +51,11 @@ public class LibroRepositoryImpl implements ILibroRepository {
 	}
 
 	@Override
-	public Libro seleccionarPorNombre(String nombre) {
-		TypedQuery<Libro> myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.titulo = : nombre",Libro.class);
+	public Libro seleccionarPorNombreNative(String nombre) {
+		Query myQuery = this.entityManager.
+				createNativeQuery("SELECT * FROM libro l WHERE l.libr_titulo=:nombre",Libro.class);
 		myQuery.setParameter("nombre", nombre);
-		return myQuery.getSingleResult();
+		return (Libro) myQuery.getSingleResult();
 	}
 
 	@Override

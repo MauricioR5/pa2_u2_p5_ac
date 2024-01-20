@@ -35,4 +35,40 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		this.iAlumnoRepository.eliminar(id);
 	}
 
+	@Override
+	public Alumno buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorNombre(nombre);
+	}
+
+	@Override
+	public Alumno buscarPorCedula(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorCedula(cedula);
+	}
+
+	@Override
+	public Alumno buscarPorApellido(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorApellido(apellido);
+	}
+
+	@Override
+	public Alumno buscarPorNombreNative(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorNombreNative(nombre);
+	}
+
+	@Override
+	public Alumno buscarPorCedulaNative(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorCedulaNative(cedula);
+	}
+
+	@Override
+	public Alumno buscarPorApellidoNative(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorApellidoNative(apellido);
+	}
+
 }

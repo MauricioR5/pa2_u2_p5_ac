@@ -22,6 +22,12 @@ public class Alumno {
 	@Column(name="alum_nombre")
 	private String nombre;
 	
+	@Column(name = "alum_apellido")
+	private String apellido;
+	
+	@Column(name = "alum_cedula")
+	private String cedula;
+	
 	//set get
 	public Integer getId() {
 		return id;
@@ -35,10 +41,23 @@ public class Alumno {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 	@Override
 	public String toString() {
-		return "Alumno [id=" + id + ", nombre=" + nombre + "]";
+		return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + "]";
 	}
+	
 	
 	
 

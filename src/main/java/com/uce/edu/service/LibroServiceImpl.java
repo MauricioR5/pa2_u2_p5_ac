@@ -40,9 +40,9 @@ public class LibroServiceImpl implements ILibroService {
 	}
 
 	@Override
-	public Libro buscarPorNombre(String nombre) {
+	public Libro buscarPorNombreNative(String nombre) {
 		// TODO Auto-generated method stub
-		return this.iLibroRepository.seleccionarPorNombre(nombre);
+		return this.iLibroRepository.seleccionarPorNombreNative(nombre);
 	}
 
 	@Override
