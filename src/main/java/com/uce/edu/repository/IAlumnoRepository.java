@@ -23,4 +23,9 @@ public interface IAlumnoRepository {
 	public Alumno seleccionarPorCedulaNative(String cedula);
 
 	public Alumno seleccionarPorApellidoNative(String apellido);
+
+	public Alumno seleccionarPorCriteria(String nombre, String apellido, String cedula);
+	
+	public Alumno seleccionarPorCedulaCri(String cedula);
+
 }

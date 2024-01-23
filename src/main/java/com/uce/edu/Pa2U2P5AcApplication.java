@@ -5,14 +5,24 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.repository.modelo.Alumno;
+import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.IAlumnoService;
+import com.uce.edu.service.IHotelService;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5AcApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoService iCiudadanoService;
+	private IAlumnoService iAlumnoService;
+
+	@Autowired
+	private ILibroService iLibroService;
+
+	@Autowired
+	private IHotelService iHotelService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5AcApplication.class, args);
@@ -21,27 +31,19 @@ public class Pa2U2P5AcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Ciudadano ciud = this.iCiudadanoService.buscarPorApellido("Cacuango");
-		System.out.println(ciud);
-		// Hibernate: select
-		// c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from
-		// ciudadano c1_0 where c1_0.ciud_nombre=?
-		Ciudadano ciud1 = this.iCiudadanoService.buscarPorCriteria("Mauricio", "Cacuango", "173456789");
-		System.out.println(ciud1);
+		Alumno alum = this.iAlumnoService.buscarPorCriteria("Jairo", "Perez", "17171717");
+		System.out.println(alum);
 
-		// Hibernate: select
-		// c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from
-		// ciudadano c1_0 where c1_0.ciud_apellido=?
-		Ciudadano ciud2 = this.iCiudadanoService.buscarPorCriteria("Mauricio", "Cacuango", "0563456789");
-		System.out.println(ciud2);
+		Alumno alum2 = this.iAlumnoService.buscarPorCriteria("Pepe", "Gonzales", "12345678");
+		System.out.println(alum2);
 
-		// Hibernate: select
-		// c1_0.ciud_id,c1_0.ciud_apellido,c1_0.ciud_cedula,c1_0.ciud_nombre from
-		// ciudadano c1_0 where c1_0.ciud_cedula=?
-		Ciudadano ciud3 = this.iCiudadanoService.buscarPorCriteria("Mauricio", "Cacuango", "053456789");
-		System.out.println(ciud3);
-		
-		Ciudadano ciud4 = this.iCiudadanoService.buscarPorCriteriaAndOr("Mauricio", "Cacuango", "173456789");
-		System.out.println(ciud4);
+		Libro lb = this.iLibroService.buscarPorCriteria("REDES");
+		System.out.println(lb);
+
+		Alumno alum3 = this.iAlumnoService.buscarPorCedulaCri("17171717");
+		System.out.println(alum3);
+
+		Hotel hote = this.iHotelService.buscarPorCriteria("Marriot");
+		System.out.println(hote);
 	}
 }

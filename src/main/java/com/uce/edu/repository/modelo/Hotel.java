@@ -66,6 +66,11 @@ public class Hotel {
 	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
+
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + "]";
+	}
 	
 	
 }

@@ -6,11 +6,16 @@ import org.springframework.stereotype.Repository;
 
 import com.uce.edu.repository.modelo.Habitacion;
 import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.repository.modelo.Libro;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -45,6 +50,22 @@ public class HotelRepositoryImpl implements IHotelRepository {
 				.createQuery("SELECT h FROM Habitacion h WHERE h.hotel.nombre =:nombre", Habitacion.class);
 		myQuery.setParameter("nombre", nombre);
 		return myQuery.getResultList();
+	}
+
+	@Override
+	public Hotel seleccionarPorCriteria(String nombre) {
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Hotel> myCriteriaQuery = myCriteriaBuilder.createQuery(Hotel.class);
+
+		Root<Hotel> myFrom = myCriteriaQuery.from(Hotel.class);
+
+		Predicate condicionNombre = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
+		myCriteriaQuery.select(myFrom).where(condicionNombre);
+
+		TypedQuery<Hotel> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
 	}
 
 }

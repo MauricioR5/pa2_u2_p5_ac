@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.repository.modelo.Libro2;
 
@@ -12,6 +13,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -47,37 +52,53 @@ public class LibroRepositoryImpl implements ILibroRepository {
 		// JPQL: SELECT l FROM Libro l WHERE l.fechaPublicacion >= :fecha
 		Query myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.fechaPublicacion >= :fecha");
 		myQuery.setParameter("fecha", fechaPublicacion);
-		return (List<Libro>)myQuery.getResultList();
+		return (List<Libro>) myQuery.getResultList();
 	}
 
 	@Override
 	public Libro seleccionarPorNombreNative(String nombre) {
-		Query myQuery = this.entityManager.
-				createNativeQuery("SELECT * FROM libro l WHERE l.libr_titulo=:nombre",Libro.class);
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM libro l WHERE l.libr_titulo=:nombre",
+				Libro.class);
 		myQuery.setParameter("nombre", nombre);
 		return (Libro) myQuery.getSingleResult();
 	}
 
 	@Override
 	public List<Libro> seleccionarPorFecha(LocalDateTime fechaPublicacion) {
-	TypedQuery<Libro > myQuery = this.entityManager.createQuery("SELECT l FROM Libro l WHERE l.fechaPublicacion >= :fecha",Libro.class);
-	myQuery.setParameter("fecha", fechaPublicacion);
-	return myQuery.getResultList();
+		TypedQuery<Libro> myQuery = this.entityManager
+				.createQuery("SELECT l FROM Libro l WHERE l.fechaPublicacion >= :fecha", Libro.class);
+		myQuery.setParameter("fecha", fechaPublicacion);
+		return myQuery.getResultList();
 	}
 
 	@Override
 	public Libro seleccionarPorTituloNamed(String titulo) {
-	TypedQuery<Libro> myQuery =	this.entityManager.createNamedQuery("Libro.queryBuscarPorTitulo",Libro.class);
-	myQuery.setParameter("titulo", titulo);
-	return myQuery.getSingleResult();
+		TypedQuery<Libro> myQuery = this.entityManager.createNamedQuery("Libro.queryBuscarPorTitulo", Libro.class);
+		myQuery.setParameter("titulo", titulo);
+		return myQuery.getSingleResult();
 	}
 
 	@Override
 	public List<Libro> seleccionarPorFechaNamed(LocalDateTime fechaPublicacion) {
-	TypedQuery<Libro> myQuery =	this.entityManager.createNamedQuery("Libro.queryBuscarPorFecha", Libro.class);
-	myQuery.setParameter("fecha", fechaPublicacion)	;
-	return myQuery.getResultList();
+		TypedQuery<Libro> myQuery = this.entityManager.createNamedQuery("Libro.queryBuscarPorFecha", Libro.class);
+		myQuery.setParameter("fecha", fechaPublicacion);
+		return myQuery.getResultList();
 	}
-	
+
+	@Override
+	public Libro seleccionarPorCriteria(String titulo) {
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Libro> myCriteriaQuery = myCriteriaBuilder.createQuery(Libro.class);
+
+		Root<Libro> myFrom = myCriteriaQuery.from(Libro.class);
+
+		Predicate condicionTitulo = myCriteriaBuilder.equal(myFrom.get("titulo"), titulo);
+		myCriteriaQuery.select(myFrom).where(condicionTitulo);
+
+		TypedQuery<Libro> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
+	}
 
 }

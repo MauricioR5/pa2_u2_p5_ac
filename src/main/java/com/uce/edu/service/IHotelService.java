@@ -14,4 +14,6 @@ public interface IHotelService {
 	public Hotel buscarPorNombreNative(String numero);
 	
 	public List<Habitacion> buscarHabitacion(String nombre);
+	
+	public Hotel buscarPorCriteria(String nombre);
 }

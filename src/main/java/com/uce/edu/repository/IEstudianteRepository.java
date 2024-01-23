@@ -11,5 +11,8 @@ public interface IEstudianteRepository {
 	public void actualizar(Estudiante estudiante);
 	
 	public void eliminar(Integer id);
+	
+	
+	
 
 }

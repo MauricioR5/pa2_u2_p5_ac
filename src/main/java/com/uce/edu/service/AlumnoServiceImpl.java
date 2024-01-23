@@ -71,4 +71,16 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		return this.iAlumnoRepository.seleccionarPorApellidoNative(apellido);
 	}
 
+	@Override
+	public Alumno buscarPorCriteria(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorCriteria(nombre, apellido, cedula);
+	}
+
+	@Override
+	public Alumno buscarPorCedulaCri(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iAlumnoRepository.seleccionarPorCedulaCri(cedula);
+	}
+
 }

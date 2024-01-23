@@ -24,5 +24,6 @@ public interface ILibroService {
 	
 	public List<Libro> buscarPorFechaNamed(LocalDateTime fecha);
 	
+	public Libro buscarPorCriteria(String titulo);
 }
 
